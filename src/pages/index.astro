@@ -1,0 +1,402 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const details = [
+  { label: 'Celebration', value: 'Beginning of 2027' },
+  { label: 'Place', value: 'Cuenca, Ecuador' },
+  { label: 'Mood', value: 'Warm, timeless, elegant' },
+];
+---
+
+<BaseLayout
+  title="Carlos & Sofia | A celebration is coming"
+  description="A warm and elegant wedding site for Carlos and Sofia. More details coming soon."
+>
+  <header class="site-header container">
+    <a class="brand serif" href="/" aria-label="Carlos and Sofia home">C & S</a>
+    <nav aria-label="Primary navigation">
+      <a href="#story">Story</a>
+      <a href="#details">Details</a>
+      <a href="/blog/">Journal</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Save the season</p>
+        <h1 id="hero-title" class="serif">Carlos & Sofia</h1>
+        <p class="lede">
+          A celebration in the heart of the Andes, inspired by historic courtyards,
+          candlelit rooms, warm family tables, and the quiet elegance of a timeless evening.
+        </p>
+        <div class="actions">
+          <a class="button" href="#details">View the first details</a>
+          <a class="button secondary" href="/blog/">Read the journal</a>
+        </div>
+      </div>
+
+      <div class="hero-card panel" aria-label="Wedding announcement card">
+        <div class="ornament">✦</div>
+        <p class="card-kicker">With love</p>
+        <h2 class="serif">More details coming soon</h2>
+        <p>
+          We are preparing a place for dates, travel notes, venue details, and the moments
+          we want to share with the people closest to us.
+        </p>
+        <div class="monogram serif">C&nbsp;·&nbsp;S</div>
+      </div>
+    </section>
+
+    <section class="details-band" id="details" aria-label="Event highlights">
+      <div class="container detail-grid">
+        {details.map((item) => (
+          <article>
+            <span>{item.label}</span>
+            <strong class="serif">{item.value}</strong>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="story container" id="story">
+      <div class="section-heading">
+        <p class="eyebrow">The feeling</p>
+        <h2 class="serif">Colonial romance, soft light, and a table full of family.</h2>
+      </div>
+      <div class="story-grid">
+        <article class="panel texture-card">
+          <span>01</span>
+          <h3 class="serif">Historic warmth</h3>
+          <p>
+            Ornamental ceilings, carved balconies, candlelight, and old-world textures set the
+            visual direction for the site.
+          </p>
+        </article>
+        <article class="panel texture-card">
+          <span>02</span>
+          <h3 class="serif">Natural elegance</h3>
+          <p>
+            Greenery, linen, ivory flowers, champagne tones, and antique gold details keep the
+            palette soft and romantic.
+          </p>
+        </article>
+        <article class="panel texture-card">
+          <span>03</span>
+          <h3 class="serif">A living journal</h3>
+          <p>
+            The blog will hold updates, memories, recommendations, and practical notes as the
+            celebration gets closer.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="invitation container panel">
+      <p class="eyebrow">Coming next</p>
+      <h2 class="serif">A refined place for every important detail.</h2>
+      <p>
+        This first version is intentionally public-safe: no private addresses, RSVP data,
+        phone numbers, or sensitive family information. Those can be added later only when
+        you decide what should be public.
+      </p>
+      <a class="button" href="/blog/">Open the journal</a>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <p class="serif">Carlos & Sofia</p>
+    <span>Made with care for what is coming.</span>
+  </footer>
+</BaseLayout>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+  }
+
+  .brand {
+    display: grid;
+    width: 3.25rem;
+    height: 3.25rem;
+    place-items: center;
+    border: 1px solid rgba(185, 139, 69, 0.5);
+    border-radius: 999px;
+    color: var(--green);
+    text-decoration: none;
+    font-size: 1.4rem;
+    background: rgba(255, 250, 241, 0.66);
+  }
+
+  nav {
+    display: flex;
+    gap: 0.35rem;
+    padding: 0.35rem;
+    border: 1px solid rgba(185, 139, 69, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 250, 241, 0.66);
+  }
+
+  nav a {
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    color: var(--green);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 800;
+  }
+
+  nav a:hover {
+    background: rgba(185, 139, 69, 0.13);
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.74fr);
+    gap: 2rem;
+    align-items: center;
+    min-height: calc(100svh - 6rem);
+    padding: 4rem 0 5rem;
+  }
+
+  .hero-copy {
+    position: relative;
+  }
+
+  .hero-copy::before {
+    content: '';
+    position: absolute;
+    inset: -5rem auto auto -4rem;
+    width: 18rem;
+    height: 18rem;
+    border: 1px solid rgba(185, 139, 69, 0.3);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  h1 {
+    max-width: 11ch;
+    margin: 1rem 0;
+    color: var(--green);
+    font-size: clamp(5.25rem, 14vw, 12rem);
+    line-height: 0.82;
+  }
+
+  .lede {
+    max-width: 46rem;
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(1.1rem, 2vw, 1.38rem);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  .hero-card {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1.6rem, 4vw, 3rem);
+    min-height: 34rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-card::before,
+  .hero-card::after {
+    content: '';
+    position: absolute;
+    inset: 1rem;
+    border: 1px solid rgba(185, 139, 69, 0.34);
+    border-radius: 1.45rem;
+    pointer-events: none;
+  }
+
+  .hero-card::after {
+    inset: 2rem;
+    border-color: rgba(20, 56, 44, 0.14);
+  }
+
+  .ornament {
+    color: var(--gold);
+    font-size: 2rem;
+  }
+
+  .card-kicker {
+    margin: 1rem 0 0;
+    color: var(--terracotta);
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .hero-card h2 {
+    margin: 0.75rem 0 1rem;
+    color: var(--green);
+    font-size: clamp(2.7rem, 5vw, 4.8rem);
+    line-height: 0.92;
+  }
+
+  .hero-card p {
+    color: var(--muted);
+  }
+
+  .monogram {
+    margin-top: 2rem;
+    color: var(--gold);
+    font-size: 2.2rem;
+  }
+
+  .details-band {
+    border-block: 1px solid rgba(185, 139, 69, 0.22);
+    background: rgba(20, 56, 44, 0.94);
+    color: white;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .detail-grid article {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .detail-grid article + article {
+    border-left: 1px solid rgba(232, 210, 164, 0.22);
+  }
+
+  .detail-grid span {
+    display: block;
+    color: var(--champagne);
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .detail-grid strong {
+    display: block;
+    margin-top: 0.45rem;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 500;
+  }
+
+  .story {
+    padding: 6rem 0;
+  }
+
+  .section-heading {
+    max-width: 760px;
+    margin-bottom: 2rem;
+  }
+
+  .section-heading h2,
+  .invitation h2 {
+    margin: 0.8rem 0 0;
+    color: var(--green);
+    font-size: clamp(2.6rem, 6vw, 5.6rem);
+    line-height: 0.95;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .texture-card {
+    padding: 1.6rem;
+  }
+
+  .texture-card span {
+    color: var(--gold);
+    font-weight: 900;
+  }
+
+  .texture-card h3 {
+    margin: 1.5rem 0 0.7rem;
+    color: var(--green);
+    font-size: 2rem;
+  }
+
+  .texture-card p,
+  .invitation p {
+    color: var(--muted);
+  }
+
+  .invitation {
+    margin-bottom: 5rem;
+    padding: clamp(1.5rem, 5vw, 4rem);
+  }
+
+  .invitation p {
+    max-width: 740px;
+    font-size: 1.08rem;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2rem 0 3rem;
+    color: var(--muted);
+  }
+
+  .footer p {
+    margin: 0;
+    color: var(--green);
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: 860px) {
+    .hero,
+    .story-grid,
+    .detail-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      min-height: auto;
+      padding-top: 2rem;
+    }
+
+    .detail-grid article + article {
+      border-left: 0;
+      border-top: 1px solid rgba(232, 210, 164, 0.22);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .site-header,
+    .footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    nav {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    nav a {
+      padding-inline: 0.72rem;
+    }
+
+    .hero-card {
+      min-height: 28rem;
+    }
+  }
+</style>

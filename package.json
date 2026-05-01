@@ -1,0 +1,1 @@
+{"name":"carlosysofia.github.io","type":"module","version":"0.1.0","private":true,"packageManager":"pnpm@10.33.0","scripts":{"dev":"astro dev","build":"astro check && astro build","preview":"astro preview","astro":"astro"},"dependencies":{"@astrojs/check":"^0.9.4","astro":"^6.2.1","typescript":"^5.9.3"},"pnpm":{"overrides":{"yaml":"^2.8.3"}},"devDependencies":{}}
