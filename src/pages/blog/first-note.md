@@ -1,17 +1,17 @@
 ---
-title: "The first note"
-description: "A small beginning for the Carlos & Sofia wedding journal."
+title: "La primera nota"
+description: "Un pequeño comienzo para el diario de boda de Carlos & Sofia."
 pubDate: 2026-05-01
 ---
 
-This is the first public note for the Carlos & Sofia site.
+Esta es la primera nota pública del sitio de Carlos & Sofia.
 
-For now, the site is intentionally simple and privacy-safe. As plans become ready to share, this journal can hold:
+Por ahora, el sitio empieza como un espacio sencillo para compartir lo esencial. Conforme los planes estén listos, este diario podrá incluir:
 
-- official date and venue details
-- travel recommendations
-- celebration updates
-- stories and photos
-- RSVP instructions, if they should be public
+- fecha oficial y detalles del lugar
+- recomendaciones de viaje
+- actualizaciones de la celebración
+- historias y fotos
+- instrucciones de RSVP, si deben ser públicas
 
-More soon.
+Más pronto.

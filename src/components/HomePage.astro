@@ -1,0 +1,449 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Detail {
+  label: string;
+  value: string;
+}
+
+interface Card {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  lang: 'es' | 'en';
+  title: string;
+  description: string;
+  nav: { story: string; details: string; journal: string };
+  language: { label: string; current: string; other: string; otherHref: string };
+  hero: { eyebrow: string; headline: string; lede: string; primary: string; secondary: string };
+  photo: { kicker: string; title: string; body: string; alt: string };
+  details: Detail[];
+  story: { eyebrow: string; title: string; cards: Card[] };
+  contact: { eyebrow: string; title: string; body: string; button: string; email: string };
+  footer: string;
+}
+
+const { lang, title, description, nav, language, hero, photo, details, story, contact, footer } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+  <header class="site-header container">
+    <a class="brand serif" href={lang === 'es' ? '/' : '/en/'} aria-label="Carlos and Sofia home">C & S</a>
+    <div class="header-controls">
+      <nav aria-label="Primary navigation">
+        <a href="#story">{nav.story}</a>
+        <a href="#details">{nav.details}</a>
+        <a href="/blog/">{nav.journal}</a>
+      </nav>
+      <div class="language-switch" aria-label={language.label}>
+        <span aria-current="true">{language.current}</span>
+        <a href={language.otherHref}>{language.other}</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">{hero.eyebrow}</p>
+        <h1 id="hero-title" class="serif">{hero.headline}</h1>
+        <p class="lede">{hero.lede}</p>
+        <div class="actions">
+          <a class="button" href="#details">{hero.primary}</a>
+          <a class="button secondary" href="/blog/">{hero.secondary}</a>
+        </div>
+      </div>
+
+      <figure class="hero-card panel" aria-label={photo.title}>
+        <img src="/carlos-sofia.jpg" alt={photo.alt} loading="eager" />
+        <figcaption>
+          <p class="card-kicker">{photo.kicker}</p>
+          <h2 class="serif">{photo.title}</h2>
+          <p>{photo.body}</p>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="details-band" id="details" aria-label="Event highlights">
+      <div class="container detail-grid">
+        {details.map((item) => (
+          <article>
+            <span>{item.label}</span>
+            <strong class="serif">{item.value}</strong>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="story container" id="story">
+      <div class="section-heading">
+        <p class="eyebrow">{story.eyebrow}</p>
+        <h2 class="serif">{story.title}</h2>
+      </div>
+      <div class="story-grid">
+        {story.cards.map((card, index) => (
+          <article class="panel texture-card">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="serif">{card.title}</h3>
+            <p>{card.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="invitation container panel">
+      <p class="eyebrow">{contact.eyebrow}</p>
+      <h2 class="serif">{contact.title}</h2>
+      <p>{contact.body}</p>
+      <a class="button" href={`mailto:${contact.email}`}>{contact.button}</a>
+      <a class="email-link" href={`mailto:${contact.email}`}>{contact.email}</a>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <p class="serif">Carlos & Sofia</p>
+    <span>{footer}</span>
+  </footer>
+</BaseLayout>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+  }
+
+  .brand {
+    display: grid;
+    width: 3.25rem;
+    height: 3.25rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid rgba(185, 139, 69, 0.5);
+    border-radius: 999px;
+    color: var(--green);
+    text-decoration: none;
+    font-size: 1.4rem;
+    background: rgba(255, 250, 241, 0.66);
+  }
+
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  nav,
+  .language-switch {
+    display: flex;
+    gap: 0.35rem;
+    padding: 0.35rem;
+    border: 1px solid rgba(185, 139, 69, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 250, 241, 0.66);
+  }
+
+  nav a,
+  .language-switch a,
+  .language-switch span {
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    color: var(--green);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 800;
+  }
+
+  nav a:hover,
+  .language-switch a:hover,
+  .language-switch span {
+    background: rgba(185, 139, 69, 0.13);
+  }
+
+  .language-switch span {
+    color: var(--gold);
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.74fr);
+    gap: 2rem;
+    align-items: center;
+    min-height: calc(100svh - 6rem);
+    padding: 4rem 0 5rem;
+  }
+
+  .hero-copy {
+    position: relative;
+  }
+
+  .hero-copy::before {
+    content: '';
+    position: absolute;
+    inset: -5rem auto auto -4rem;
+    width: 18rem;
+    height: 18rem;
+    border: 1px solid rgba(185, 139, 69, 0.3);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  h1 {
+    max-width: 11ch;
+    margin: 1rem 0;
+    color: var(--green);
+    font-size: clamp(5.25rem, 14vw, 12rem);
+    line-height: 0.82;
+  }
+
+  .lede {
+    max-width: 46rem;
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(1.1rem, 2vw, 1.38rem);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  .hero-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 34rem;
+    margin: 0;
+    display: grid;
+    align-items: end;
+  }
+
+  .hero-card::before,
+  .hero-card::after {
+    content: '';
+    position: absolute;
+    inset: 1rem;
+    border: 1px solid rgba(232, 210, 164, 0.55);
+    border-radius: 1.45rem;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .hero-card::after {
+    inset: 2rem;
+    border-color: rgba(255, 250, 241, 0.42);
+  }
+
+  .hero-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.92) contrast(0.96) brightness(0.9);
+  }
+
+  .hero-card figcaption {
+    position: relative;
+    z-index: 1;
+    padding: clamp(1.6rem, 4vw, 3rem);
+    color: white;
+    background: linear-gradient(transparent, rgba(20, 56, 44, 0.9));
+    text-align: center;
+  }
+
+  .card-kicker {
+    margin: 0;
+    color: var(--champagne);
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .hero-card h2 {
+    margin: 0.75rem 0 1rem;
+    color: white;
+    font-size: clamp(2.7rem, 5vw, 4.8rem);
+    line-height: 0.92;
+  }
+
+  .hero-card p:last-child {
+    margin-inline: auto;
+    max-width: 28rem;
+    color: rgba(255, 250, 241, 0.88);
+  }
+
+  .details-band {
+    border-block: 1px solid rgba(185, 139, 69, 0.22);
+    background: rgba(20, 56, 44, 0.94);
+    color: white;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .detail-grid article {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .detail-grid article + article {
+    border-left: 1px solid rgba(232, 210, 164, 0.22);
+  }
+
+  .detail-grid span {
+    display: block;
+    color: var(--champagne);
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .detail-grid strong {
+    display: block;
+    margin-top: 0.45rem;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 500;
+  }
+
+  .story {
+    padding: 6rem 0;
+  }
+
+  .section-heading {
+    max-width: 760px;
+    margin-bottom: 2rem;
+  }
+
+  .section-heading h2,
+  .invitation h2 {
+    margin: 0.8rem 0 0;
+    color: var(--green);
+    font-size: clamp(2.6rem, 6vw, 5.6rem);
+    line-height: 0.95;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .texture-card {
+    padding: 1.6rem;
+  }
+
+  .texture-card span {
+    color: var(--gold);
+    font-weight: 900;
+  }
+
+  .texture-card h3 {
+    margin: 1.5rem 0 0.7rem;
+    color: var(--green);
+    font-size: 2rem;
+  }
+
+  .texture-card p,
+  .invitation p {
+    color: var(--muted);
+  }
+
+  .invitation {
+    margin-bottom: 5rem;
+    padding: clamp(1.5rem, 5vw, 4rem);
+  }
+
+  .invitation p {
+    max-width: 740px;
+    font-size: 1.08rem;
+  }
+
+  .email-link {
+    display: inline-flex;
+    margin-left: 1rem;
+    color: var(--green);
+    font-weight: 900;
+    text-decoration-color: rgba(185, 139, 69, 0.55);
+    text-underline-offset: 0.2em;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2rem 0 3rem;
+    color: var(--muted);
+  }
+
+  .footer p {
+    margin: 0;
+    color: var(--green);
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: 940px) {
+    .site-header,
+    .header-controls {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .hero,
+    .story-grid,
+    .detail-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      min-height: auto;
+      padding-top: 2rem;
+    }
+
+    .detail-grid article + article {
+      border-left: 0;
+      border-top: 1px solid rgba(232, 210, 164, 0.22);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    nav,
+    .language-switch {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    nav a,
+    .language-switch a,
+    .language-switch span {
+      padding-inline: 0.72rem;
+      white-space: nowrap;
+    }
+
+    .hero-card {
+      min-height: 30rem;
+    }
+
+    .email-link {
+      margin: 1rem 0 0;
+    }
+  }
+</style>

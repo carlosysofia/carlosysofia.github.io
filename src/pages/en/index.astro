@@ -1,0 +1,63 @@
+---
+import HomePage from '../../components/HomePage.astro';
+
+const details = [
+  { label: 'Celebration', value: 'Beginning of 2027' },
+  { label: 'Place', value: 'Cuenca, Ecuador' },
+  { label: 'Mood', value: 'Warm, timeless, elegant' },
+];
+---
+
+<HomePage
+  lang="en"
+  title="Carlos & Sofia | A celebration is coming"
+  description="An elegant wedding site for Carlos and Sofia. More details coming soon."
+  nav={{ story: 'Story', details: 'Details', journal: 'Journal' }}
+  language={{ label: 'Language selector', current: 'EN', other: 'ES', otherHref: '/' }}
+  hero={{
+    eyebrow: 'Save the season',
+    headline: 'Carlos & Sofia',
+    lede:
+      'A celebration in the heart of the Andes, inspired by historic courtyards, candlelit rooms, warm family tables, and the quiet elegance of an unforgettable evening.',
+    primary: 'View the first details',
+    secondary: 'Read the journal',
+  }}
+  photo={{
+    kicker: 'With love',
+    title: 'More details coming soon',
+    body:
+      'We are preparing this space for dates, travel notes, venue details, and the moments we want to share with the people closest to us.',
+    alt: 'Carlos and Sofia smiling together at sunset.',
+  }}
+  details={details}
+  story={{
+    eyebrow: 'The feeling',
+    title: 'Colonial romance, soft light, and a table full of family.',
+    cards: [
+      {
+        title: 'Historic warmth',
+        body:
+          'Ornamental ceilings, carved balconies, candlelight, and old-world textures set the visual direction for the site.',
+      },
+      {
+        title: 'Natural elegance',
+        body:
+          'Deep greenery, linen, ivory flowers, champagne tones, and antique gold details keep the palette soft and romantic.',
+      },
+      {
+        title: 'A living journal',
+        body:
+          'The blog will hold updates, memories, recommendations, and practical notes as the celebration gets closer.',
+      },
+    ],
+  }}
+  contact={{
+    eyebrow: 'Contact',
+    title: 'A refined place for every important detail.',
+    body:
+      'If you would like to reach us or ask for more information, you can write to us directly by email. We will keep adding new details as they are ready to share.',
+    button: 'Send an email',
+    email: 'socharlex@gmail.com',
+  }}
+  footer="Made with care for what is coming."
+/>
