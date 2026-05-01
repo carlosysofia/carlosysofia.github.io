@@ -1,586 +1,136 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-interface Detail {
-  label: string;
-  value: string;
-}
-
-interface Card {
-  title: string;
-  body: string;
-}
-
 interface Props {
-  lang: 'es' | 'en';
-  title: string;
-  description: string;
-  nav: { story: string; details: string; journal: string; contact: string };
-  language: { label: string; current: string; other: string; otherHref: string };
-  hero: {
-    eyebrow: string;
-    firstName: string;
-    conjunction: string;
-    secondName: string;
-    date: string;
-    location: string;
-    lede: string;
-    primary: string;
-    secondary: string;
-  };
-  photo: { alt: string };
-  details: Detail[];
-  story: { eyebrow: string; title: string; cards: Card[] };
-  contact: { eyebrow: string; title: string; body: string; button: string; email: string };
-  footer: string;
+  lang?: 'es' | 'en';
+  title?: string;
+  description?: string;
 }
 
-const { lang, title, description, nav, language, hero, photo, details, story, contact, footer } = Astro.props;
-const homeHref = lang === 'es' ? '/' : '/en/';
+const {
+  lang = 'en',
+  title = 'Carlos & Sofía',
+  description = 'Carlos and Sofía — Beginning of 2027, Cuenca.',
+} = Astro.props;
 ---
 
 <BaseLayout title={title} description={description} lang={lang}>
-  <header class="site-header">
-    <a class="brand" href={homeHref} aria-label="Carlos and Sofia home">
-      <span>C</span><span aria-hidden="true">&</span><span>S</span>
-    </a>
-    <div class="header-controls">
-      <nav aria-label="Primary navigation">
-        <a href="#story">{nav.story}</a>
-        <a href="#details">{nav.details}</a>
-        <a href="/blog/">{nav.journal}</a>
-        <a href="#contact">{nav.contact}</a>
-      </nav>
-      <div class="language-switch" aria-label={language.label}>
-        <span aria-current="true">{language.current}</span>
-        <a href={language.otherHref}>{language.other}</a>
-      </div>
-    </div>
-  </header>
+  <main class="simple-page" aria-labelledby="site-title">
+    <img
+      class="portrait"
+      src="/carlos-sofia.jpg"
+      alt="Carlos and Sofía smiling together at sunset."
+      loading="eager"
+      fetchpriority="high"
+    />
 
-  <main>
-    <section class="photo-hero" aria-label={hero.eyebrow}>
-      <img src="/carlos-sofia.jpg" alt={photo.alt} loading="eager" fetchpriority="high" />
-    </section>
-
-    <section class="intro-card" aria-labelledby="hero-title">
-      <div class="corner corner-tl" aria-hidden="true"></div>
-      <div class="corner corner-tr" aria-hidden="true"></div>
-      <div class="corner corner-bl" aria-hidden="true"></div>
-      <div class="corner corner-br" aria-hidden="true"></div>
-
-      <p class="eyebrow">{hero.eyebrow}</p>
-      <h1 id="hero-title" class="names">
-        <span>{hero.firstName}</span>
-        <em>{hero.conjunction}</em>
-        <span>{hero.secondName}</span>
-      </h1>
-      <div class="flourish" aria-hidden="true">
-        <span></span>
-        <svg viewBox="0 0 120 22" role="img">
-          <path d="M4 11c18-18 38 18 56 0s38 18 56 0" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
-          <circle cx="60" cy="11" r="3.2" fill="currentColor" />
-        </svg>
-        <span></span>
-      </div>
-      <p class="date-line">{hero.date}</p>
-      <p class="location-line">{hero.location}</p>
-      <p class="lede">{hero.lede}</p>
-      <div class="actions">
-        <a class="button" href={`mailto:${contact.email}`}>{hero.primary}</a>
-        <a class="button secondary" href="#details">{hero.secondary}</a>
-      </div>
-    </section>
-
-    <section class="details-band" id="details" aria-label="Event highlights">
-      <div class="container detail-grid">
-        {details.map((item) => (
-          <article>
-            <span>{item.label}</span>
-            <strong>{item.value}</strong>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="story container" id="story">
-      <div class="section-heading centered">
-        <p class="eyebrow">{story.eyebrow}</p>
-        <h2>{story.title}</h2>
-      </div>
-      <div class="story-grid">
-        {story.cards.map((card, index) => (
-          <article class="story-card">
-            <div class="card-number">{String(index + 1).padStart(2, '0')}</div>
-            <h3>{card.title}</h3>
-            <p>{card.body}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="invitation" id="contact">
-      <div class="container invitation-inner">
-        <p class="eyebrow">{contact.eyebrow}</p>
-        <h2>{contact.title}</h2>
-        <p>{contact.body}</p>
-        <a class="button" href={`mailto:${contact.email}`}>{contact.button}</a>
-        <a class="email-link" href={`mailto:${contact.email}`}>{contact.email}</a>
-      </div>
+    <section class="card" aria-label="Wedding announcement">
+      <h1 id="site-title">Carlos <span>&</span> Sofía</h1>
+      <p>Beginning of 2027</p>
+      <p>Cuenca</p>
     </section>
   </main>
-
-  <footer class="footer container">
-    <p>Carlos <span>&</span> Sofia</p>
-    <small>{footer}</small>
-  </footer>
 </BaseLayout>
 
 <style>
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    min-height: 4.75rem;
-    padding: 0.85rem clamp(1rem, 4vw, 3rem);
-    border-bottom: 1px solid rgba(185, 139, 69, 0.18);
-    background: rgba(255, 250, 241, 0.9);
-    backdrop-filter: blur(18px);
+  .simple-page {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    background:
+      linear-gradient(rgba(20, 56, 44, 0.34), rgba(20, 56, 44, 0.34)),
+      radial-gradient(circle at top left, rgba(232, 210, 164, 0.26), transparent 34rem),
+      var(--paper);
   }
 
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.24rem;
-    color: var(--green);
-    font-family: var(--serif);
-    font-size: 1.35rem;
-    letter-spacing: 0.14em;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  .brand span:nth-child(2) {
-    color: var(--mint);
-    font-family: var(--script);
-    font-size: 1.8rem;
-    letter-spacing: 0;
-    line-height: 1;
-  }
-
-  .header-controls,
-  nav,
-  .language-switch {
-    display: flex;
-    align-items: center;
-  }
-
-  .header-controls {
-    gap: 1rem;
-  }
-
-  nav {
-    gap: clamp(0.7rem, 2vw, 1.7rem);
-  }
-
-  nav a,
-  .language-switch a,
-  .language-switch span {
-    color: var(--muted);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  nav a:hover,
-  .language-switch a:hover {
-    color: var(--mint-deep);
-  }
-
-  .language-switch {
-    gap: 0.45rem;
-    padding-left: 1rem;
-    border-left: 1px solid rgba(185, 139, 69, 0.24);
-  }
-
-  .language-switch span {
-    color: var(--mint-deep);
-  }
-
-  .photo-hero {
-    width: 100%;
-    height: clamp(24rem, 66vw, 47rem);
-    overflow: hidden;
-    background: var(--mist);
-  }
-
-  .photo-hero img {
-    display: block;
+  .portrait {
+    position: fixed;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center 42%;
-    filter: saturate(0.92) contrast(0.96) brightness(0.92) sepia(0.08);
+    filter: saturate(0.9) contrast(0.96) brightness(0.72) sepia(0.08);
   }
 
-  .intro-card {
+  .card {
     position: relative;
-    z-index: 2;
-    width: min(920px, calc(100% - 2rem));
-    margin: clamp(-7rem, -9vw, -4rem) auto 0;
-    padding: clamp(2.4rem, 7vw, 5.5rem) clamp(1.3rem, 6vw, 5rem);
-    border: 1px solid rgba(185, 139, 69, 0.32);
+    z-index: 1;
+    width: min(760px, 100%);
+    padding: clamp(2.5rem, 8vw, 5.5rem) clamp(1.5rem, 7vw, 4.5rem);
+    border: 1px solid rgba(232, 210, 164, 0.48);
     border-radius: 2rem;
-    background:
-      linear-gradient(rgba(255, 250, 241, 0.92), rgba(255, 250, 241, 0.92)),
-      radial-gradient(circle at 50% 0%, rgba(232, 210, 164, 0.55), transparent 28rem);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(16px);
+    background: rgba(255, 250, 241, 0.86);
+    box-shadow: 0 30px 90px rgba(20, 56, 44, 0.32);
     text-align: center;
+    backdrop-filter: blur(14px);
   }
 
-  .corner {
+  .card::before,
+  .card::after {
+    content: '';
     position: absolute;
-    width: 4.5rem;
-    height: 4.5rem;
-    color: var(--mint);
-    opacity: 0.82;
+    inset: 1rem;
+    border: 1px solid rgba(185, 139, 69, 0.32);
+    border-radius: 1.45rem;
     pointer-events: none;
   }
 
-  .corner::before,
-  .corner::after {
-    content: '';
-    position: absolute;
-    border-color: currentColor;
+  .card::after {
+    inset: 1.65rem;
+    border-color: rgba(20, 56, 44, 0.16);
   }
 
-  .corner::before {
-    inset: 0;
-    border-style: solid;
-    border-width: 1px 0 0 1px;
-  }
-
-  .corner::after {
-    width: 2.1rem;
-    height: 2.1rem;
-    border: 1px solid currentColor;
-    border-right: 0;
-    border-bottom: 0;
-    border-radius: 100% 0 0 0;
-  }
-
-  .corner-tl { top: 1rem; left: 1rem; }
-  .corner-tr { top: 1rem; right: 1rem; transform: rotate(90deg); }
-  .corner-br { right: 1rem; bottom: 1rem; transform: rotate(180deg); }
-  .corner-bl { left: 1rem; bottom: 1rem; transform: rotate(270deg); }
-
-  .eyebrow {
-    justify-content: center;
-  }
-
-  .names {
-    display: grid;
-    gap: 0.15rem;
-    margin: 1rem 0 0;
-    color: var(--ink);
-    font-family: var(--serif);
-    font-size: clamp(4.4rem, 12vw, 9.5rem);
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    line-height: 0.86;
-    text-transform: uppercase;
-  }
-
-  .names em {
-    color: var(--mint-deep);
-    font-family: var(--script);
-    font-size: clamp(2.4rem, 7vw, 5rem);
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: 0.8;
-    text-transform: none;
-  }
-
-  .flourish {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 1rem;
-    width: min(440px, 80%);
-    margin: 1.6rem auto 0.9rem;
-    color: var(--mint);
-  }
-
-  .flourish span {
-    height: 1px;
-    background: currentColor;
-    opacity: 0.62;
-  }
-
-  .flourish svg {
-    width: 7.5rem;
-    height: auto;
-  }
-
-  .date-line,
-  .location-line {
+  h1 {
     margin: 0;
     color: var(--green);
     font-family: var(--serif);
-    font-size: clamp(1.15rem, 2.6vw, 1.72rem);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .location-line {
-    margin-top: 0.35rem;
-    color: var(--muted);
-    font-size: clamp(0.82rem, 1.7vw, 1rem);
-    font-family: var(--sans);
-    font-weight: 700;
-  }
-
-  .lede {
-    max-width: 44rem;
-    margin: 1.35rem auto 0;
-    color: var(--muted);
-    font-size: clamp(1rem, 2vw, 1.17rem);
-  }
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.85rem;
-    margin-top: 2rem;
-  }
-
-  .details-band {
-    margin-top: clamp(3rem, 7vw, 6rem);
-    border-block: 1px solid rgba(185, 139, 69, 0.22);
-    background: rgba(20, 56, 44, 0.94);
-    color: white;
-  }
-
-  .detail-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .detail-grid article {
-    padding: clamp(1.6rem, 4vw, 2.6rem) 1.2rem;
-    text-align: center;
-  }
-
-  .detail-grid article + article {
-    border-left: 1px solid rgba(232, 210, 164, 0.22);
-  }
-
-  .detail-grid span {
-    display: block;
-    color: var(--champagne);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-
-  .detail-grid strong {
-    display: block;
-    margin-top: 0.45rem;
-    color: white;
-    font-family: var(--serif);
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 500;
-  }
-
-
-  .story {
-    padding: clamp(4rem, 8vw, 7rem) 0;
-  }
-
-  .centered {
-    max-width: 760px;
-    margin: 0 auto 2.3rem;
-    text-align: center;
-  }
-
-  .section-heading h2,
-  .invitation h2 {
-    margin: 0.8rem 0 0;
-    color: var(--ink);
-    font-family: var(--serif);
-    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-size: clamp(4rem, 13vw, 9rem);
     font-weight: 500;
     letter-spacing: 0.02em;
-    line-height: 0.96;
+    line-height: 0.9;
   }
 
-  .story-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  h1 span {
+    color: var(--gold);
+    font-family: var(--script);
+    font-size: 0.82em;
+    font-weight: 400;
+    letter-spacing: 0;
   }
 
-  .story-card {
-    min-height: 18rem;
-    padding: clamp(1.4rem, 3vw, 2rem);
-    border: 1px solid rgba(185, 139, 69, 0.24);
-    border-radius: 1.4rem;
-    background: var(--veil);
-    box-shadow: 0 18px 50px rgba(46, 36, 29, 0.1);
-  }
-
-  .card-number {
-    color: var(--mint);
-    font-family: var(--serif);
-    font-size: 2rem;
-  }
-
-  .story-card h3 {
-    margin: 1.3rem 0 0.7rem;
-    color: var(--green);
-    font-family: var(--serif);
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 1;
-  }
-
-  .story-card p,
-  .invitation p {
-    color: var(--muted);
-  }
-
-  .invitation {
-    padding: clamp(4rem, 8vw, 6rem) 0;
-    background:
-      linear-gradient(rgba(255, 250, 241, 0.84), rgba(255, 250, 241, 0.84)),
-      radial-gradient(circle at center, rgba(185, 139, 69, 0.18), transparent 30rem);
-    text-align: center;
-  }
-
-  .invitation-inner {
-    max-width: 820px;
-  }
-
-  .invitation p {
-    max-width: 680px;
-    margin: 1.1rem auto 1.7rem;
-    font-size: 1.08rem;
-  }
-
-  .email-link {
-    display: inline-flex;
-    margin-left: 1rem;
-    color: var(--mint-deep);
-    font-weight: 800;
-    text-decoration-color: rgba(149, 178, 163, 0.7);
-    text-underline-offset: 0.2em;
-  }
-
-  .footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 2rem 0 3rem;
-    color: var(--muted);
-  }
-
-  .footer p {
-    margin: 0;
+  p {
+    margin: 1.25rem 0 0;
     color: var(--ink);
     font-family: var(--serif);
-    font-size: 1.8rem;
-    letter-spacing: 0.05em;
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
     text-transform: uppercase;
   }
 
-  .footer span {
-    color: var(--mint-deep);
-    font-family: var(--script);
-    font-size: 1.25em;
-    text-transform: none;
+  p + p {
+    margin-top: 0.55rem;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: clamp(0.9rem, 2vw, 1.15rem);
+    font-weight: 800;
   }
 
-  @media (max-width: 900px) {
-    .site-header,
-    .header-controls {
-      align-items: flex-start;
-      flex-direction: column;
+  @media (max-width: 520px) {
+    .simple-page {
+      padding: 1rem;
     }
 
-    .site-header {
-      position: relative;
+    .card {
+      border-radius: 1.5rem;
     }
 
-    .language-switch {
-      padding-left: 0;
-      border-left: 0;
-    }
-  }
-
-  @media (max-width: 760px) {
-    nav,
-    .header-controls {
-      width: 100%;
-    }
-
-    nav {
-      overflow-x: auto;
-      padding-bottom: 0.2rem;
-    }
-
-    .intro-card {
-      margin-top: -3rem;
-    }
-
-    .corner {
-      width: 3rem;
-      height: 3rem;
-    }
-
-    .detail-grid,
-    .story-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .detail-grid article + article {
-      border-top: 1px solid rgba(232, 210, 164, 0.22);
-      border-left: 0;
-    }
-
-    .story-card {
-      min-height: auto;
-    }
-
-    .footer {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-
-    .email-link {
-      display: flex;
-      justify-content: center;
-      margin: 1rem 0 0;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .photo-hero {
-      height: 24rem;
-    }
-
-    .names {
-      font-size: clamp(3.25rem, 18vw, 4.8rem);
+    .card::before,
+    .card::after {
+      display: none;
     }
   }
 </style>
