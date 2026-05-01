@@ -2,9 +2,9 @@
 import HomePage from '../../components/HomePage.astro';
 
 const details = [
-  { label: 'Celebration', value: 'Beginning of 2027' },
+  { label: 'Date', value: 'Beginning of 2027' },
   { label: 'Place', value: 'Cuenca, Ecuador' },
-  { label: 'Mood', value: 'Warm, timeless, elegant' },
+  { label: 'Style', value: 'Airy, romantic, elegant' },
 ];
 ---
 
@@ -12,51 +12,51 @@ const details = [
   lang="en"
   title="Carlos & Sofia | A celebration is coming"
   description="An elegant wedding site for Carlos and Sofia. More details coming soon."
-  nav={{ story: 'Story', details: 'Details', journal: 'Journal' }}
+  nav={{ story: 'Story', details: 'Details', journal: 'Journal', contact: 'RSVP' }}
   language={{ label: 'Language selector', current: 'EN', other: 'ES', otherHref: '/' }}
   hero={{
-    eyebrow: 'Save the season',
-    headline: 'Carlos & Sofia',
+    eyebrow: 'With joy we invite you to celebrate the wedding of',
+    firstName: 'Carlos',
+    conjunction: 'and',
+    secondName: 'Sofia',
+    date: 'Beginning of 2027',
+    location: 'Cuenca, Ecuador',
     lede:
-      'A celebration in the heart of the Andes, inspired by historic courtyards, candlelit rooms, warm family tables, and the quiet elegance of an unforgettable evening.',
-    primary: 'View the first details',
-    secondary: 'Read the journal',
+      'We are preparing a calm, heartfelt celebration in the heart of the Andes. Soon we will share the exact date, travel guidance, and every detail for joining us.',
+    primary: 'RSVP by email',
+    secondary: 'View details',
   }}
   photo={{
-    kicker: 'With love',
-    title: 'More details coming soon',
-    body:
-      'We are preparing this space for dates, travel notes, venue details, and the moments we want to share with the people closest to us.',
     alt: 'Carlos and Sofia smiling together at sunset.',
   }}
   details={details}
   story={{
-    eyebrow: 'The feeling',
-    title: 'Colonial romance, soft light, and a table full of family.',
+    eyebrow: 'The celebration',
+    title: 'A minimal, warm invitation filled with light.',
     cards: [
       {
-        title: 'Historic warmth',
+        title: 'The ceremony',
         body:
-          'Ornamental ceilings, carved balconies, candlelight, and old-world textures set the visual direction for the site.',
+          'An intimate and elegant gathering with a clean aesthetic: soft whites, mint details, light florals, and plenty of breathing room.',
       },
       {
-        title: 'Natural elegance',
+        title: 'The city',
         body:
-          'Deep greenery, linen, ivory flowers, champagne tones, and antique gold details keep the palette soft and romantic.',
+          'Cuenca inspires us with its courtyards, domes, historic streets, and gentle light that we hope to share with family and friends.',
       },
       {
-        title: 'A living journal',
+        title: 'The journal',
         body:
-          'The blog will hold updates, memories, recommendations, and practical notes as the celebration gets closer.',
+          'We will use the blog for practical notes, memories, travel recommendations, and updates as the celebration gets closer.',
       },
     ],
   }}
   contact={{
-    eyebrow: 'Contact',
-    title: 'A refined place for every important detail.',
+    eyebrow: 'RSVP and contact',
+    title: 'Write to us to receive upcoming updates.',
     body:
-      'If you would like to reach us or ask for more information, you can write to us directly by email. We will keep adding new details as they are ready to share.',
-    button: 'Send an email',
+      'For now this site does not collect personal data. To confirm interest, ask questions, or request more information, you can write to us directly by email.',
+    button: 'Email Carlos and Sofia',
     email: 'socharlex@gmail.com',
   }}
   footer="Made with care for what is coming."

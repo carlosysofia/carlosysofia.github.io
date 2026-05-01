@@ -2,9 +2,9 @@
 import HomePage from '../components/HomePage.astro';
 
 const details = [
-  { label: 'Celebración', value: 'Inicios de 2027' },
+  { label: 'Fecha', value: 'Inicios de 2027' },
   { label: 'Lugar', value: 'Cuenca, Ecuador' },
-  { label: 'Estilo', value: 'Cálido, eterno, elegante' },
+  { label: 'Estilo', value: 'Ligero, romántico, elegante' },
 ];
 ---
 
@@ -12,51 +12,51 @@ const details = [
   lang="es"
   title="Carlos & Sofia | Una celebración está por venir"
   description="Sitio elegante de boda para Carlos y Sofia. Más detalles próximamente."
-  nav={{ story: 'Historia', details: 'Detalles', journal: 'Diario' }}
+  nav={{ story: 'Historia', details: 'Detalles', journal: 'Diario', contact: 'RSVP' }}
   language={{ label: 'Selector de idioma', current: 'ES', other: 'EN', otherHref: '/en/' }}
   hero={{
-    eyebrow: 'Reserva la temporada',
-    headline: 'Carlos & Sofia',
+    eyebrow: 'Con alegría invitamos a celebrar la boda de',
+    firstName: 'Carlos',
+    conjunction: 'and',
+    secondName: 'Sofia',
+    date: 'Inicios de 2027',
+    location: 'Cuenca, Ecuador',
     lede:
-      'Una celebración en el corazón de los Andes, inspirada en patios históricos, salones a la luz de las velas, mesas familiares y la elegancia serena de una noche inolvidable.',
-    primary: 'Ver los primeros detalles',
-    secondary: 'Leer el diario',
+      'Estamos preparando una celebración serena y llena de cariño en el corazón de los Andes. Pronto compartiremos la fecha exacta, guía de viaje y todos los detalles para acompañarnos.',
+    primary: 'Confirmar por correo',
+    secondary: 'Ver detalles',
   }}
   photo={{
-    kicker: 'Con amor',
-    title: 'Más detalles próximamente',
-    body:
-      'Estamos preparando este espacio para compartir fechas, notas de viaje, detalles del lugar y los momentos que queremos vivir junto a las personas más cercanas a nosotros.',
     alt: 'Carlos y Sofia sonriendo juntos al atardecer.',
   }}
   details={details}
   story={{
-    eyebrow: 'La sensación',
-    title: 'Romance colonial, luz suave y una mesa llena de familia.',
+    eyebrow: 'La celebración',
+    title: 'Una invitación minimalista, cálida y llena de luz.',
     cards: [
       {
-        title: 'Calidez histórica',
+        title: 'La ceremonia',
         body:
-          'Cielos ornamentales, balcones tallados, luz de velas y texturas antiguas marcan la dirección visual del sitio.',
+          'Un encuentro íntimo y elegante con una estética limpia: blancos suaves, detalles en menta, flores claras y mucho espacio para respirar.',
       },
       {
-        title: 'Elegancia natural',
+        title: 'La ciudad',
         body:
-          'Verdes profundos, lino, flores marfil, tonos champagne y detalles en oro antiguo mantienen una paleta suave y romántica.',
+          'Cuenca nos inspira con sus patios, cúpulas, calles históricas y una luz tranquila que queremos compartir con familia y amigos.',
       },
       {
-        title: 'Un diario vivo',
+        title: 'El diario',
         body:
-          'El blog reunirá actualizaciones, recuerdos, recomendaciones y notas prácticas conforme se acerque la celebración.',
+          'Usaremos el blog para publicar notas útiles, recuerdos, recomendaciones de viaje y actualizaciones conforme se acerque la celebración.',
       },
     ],
   }}
   contact={{
-    eyebrow: 'Contacto',
-    title: 'Un lugar refinado para cada detalle importante.',
+    eyebrow: 'RSVP y contacto',
+    title: 'Escríbenos para recibir las próximas novedades.',
     body:
-      'Si deseas comunicarte con nosotros o pedir más información, puedes escribirnos directamente por correo. Iremos agregando nuevos detalles conforme estén listos para compartir.',
-    button: 'Escribir por correo',
+      'Por ahora este sitio no recopila datos personales. Para confirmar interés, hacer preguntas o pedir más información, puedes escribirnos directamente por correo.',
+    button: 'Escribir a Carlos y Sofia',
     email: 'socharlex@gmail.com',
   }}
   footer="Hecho con cariño para lo que viene."
