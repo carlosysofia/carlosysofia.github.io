@@ -2,9 +2,9 @@
 import HomePage from '../../components/HomePage.astro';
 
 const details = [
-  { label: 'Date', value: 'Beginning of 2027' },
+  { label: 'Celebration', value: 'Beginning of 2027' },
   { label: 'Place', value: 'Cuenca, Ecuador' },
-  { label: 'Style', value: 'Airy, romantic, elegant' },
+  { label: 'Mood', value: 'Warm, timeless, elegant' },
 ];
 ---
 
@@ -15,14 +15,14 @@ const details = [
   nav={{ story: 'Story', details: 'Details', journal: 'Journal', contact: 'RSVP' }}
   language={{ label: 'Language selector', current: 'EN', other: 'ES', otherHref: '/' }}
   hero={{
-    eyebrow: 'With joy we invite you to celebrate the wedding of',
+    eyebrow: 'Save the season',
     firstName: 'Carlos',
     conjunction: 'and',
     secondName: 'Sofia',
     date: 'Beginning of 2027',
     location: 'Cuenca, Ecuador',
     lede:
-      'We are preparing a calm, heartfelt celebration in the heart of the Andes. Soon we will share the exact date, travel guidance, and every detail for joining us.',
+      'A celebration in the heart of the Andes, inspired by historic courtyards, candlelit rooms, warm family tables, and the quiet elegance of an unforgettable evening.',
     primary: 'RSVP by email',
     secondary: 'View details',
   }}
@@ -31,32 +31,32 @@ const details = [
   }}
   details={details}
   story={{
-    eyebrow: 'The celebration',
-    title: 'A minimal, warm invitation filled with light.',
+    eyebrow: 'The feeling',
+    title: 'Colonial romance, soft light, and a table full of family.',
     cards: [
       {
-        title: 'The ceremony',
+        title: 'Historic warmth',
         body:
-          'An intimate and elegant gathering with a clean aesthetic: soft whites, mint details, light florals, and plenty of breathing room.',
+          'Ornamental ceilings, carved balconies, candlelight, and old-world textures set the visual direction for the site.',
       },
       {
-        title: 'The city',
+        title: 'Natural elegance',
         body:
-          'Cuenca inspires us with its courtyards, domes, historic streets, and gentle light that we hope to share with family and friends.',
+          'Deep greenery, linen, ivory flowers, champagne tones, and antique gold details keep the palette soft and romantic.',
       },
       {
-        title: 'The journal',
+        title: 'A living journal',
         body:
-          'We will use the blog for practical notes, memories, travel recommendations, and updates as the celebration gets closer.',
+          'The blog will hold updates, memories, recommendations, and practical notes as the wedding day gets closer.',
       },
     ],
   }}
   contact={{
-    eyebrow: 'RSVP and contact',
-    title: 'Write to us to receive upcoming updates.',
+    eyebrow: 'Contact',
+    title: 'A refined place for every important detail.',
     body:
-      'For now this site does not collect personal data. To confirm interest, ask questions, or request more information, you can write to us directly by email.',
-    button: 'Email Carlos and Sofia',
+      'If you would like to reach us or ask for more information, you can write to us directly by email. We will keep adding new details as they are ready to share.',
+    button: 'Send an email',
     email: 'socharlex@gmail.com',
   }}
   footer="Made with care for what is coming."
